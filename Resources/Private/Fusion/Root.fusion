@@ -1,0 +1,8 @@
+include: resource://Neos.Fusion/Private/Fusion/Root.fusion
+include: resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+
+NeosRulez.Scheduler.JobController.index = NeosRulez.Scheduler:BackendView.Job.Index
+NeosRulez.Scheduler.JobController.new = NeosRulez.Scheduler:BackendView.Job.New
+NeosRulez.Scheduler.JobController.edit = NeosRulez.Scheduler:BackendView.Job.Edit
+
+include: **/*.fusion

@@ -1,0 +1,10 @@
+privilegeTargets:
+  Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'NeosRulez.Scheduler:JobControllerActions':
+      matcher: 'method(NeosRulez\Scheduler\Controller\JobController->.*Action())'
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'NeosRulez.Scheduler:JobControllerActions'
+        permission: GRANT

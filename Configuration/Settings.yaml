@@ -1,0 +1,26 @@
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'NeosRulez.Scheduler': true
+  Neos:
+    fusion:
+      autoInclude:
+        NeosRulez.Scheduler: true
+    modules:
+      scheduler:
+        label: 'Scheduler'
+        controller: '\Neos\Neos\Controller\Module\ManagementController'
+        description: 'Scheduler Administration'
+        icon: 'far fa-clock'
+        resource: 'Neos_Neos_Backend_Module_Management'
+        submodules:
+          index:
+            label: 'Jobs'
+            controller: '\NeosRulez\Scheduler\Controller\JobController'
+            description: 'Jobs verwalten'
+            icon: 'far fa-calendar-alt'
+            actions:
+              index:
+                label: 'Manage jobs'
+                title: 'Manage jobs'

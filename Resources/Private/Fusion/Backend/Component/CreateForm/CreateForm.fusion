@@ -1,0 +1,42 @@
+prototype(NeosRulez.Scheduler:BackendView.Job.CreateForm) < prototype(Neos.Fusion:Component) {
+
+    buttonLabel = ${(this.action == 'create' ? 'Create' : 'Edit') + ' job'}
+    header = ${(this.action == 'create' ? 'Create new' : 'Edit') + ' job'}
+
+    renderer = afx`
+
+        <legend>{props.header}</legend>
+
+        <Neos.Fusion.Form:Form form.data.job={job} form.target.action={props.action} form.target.controller="Job" >
+
+            <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[name]" label="Name">
+                <Neos.Fusion.Form:Input attributes.placeholder="Name" />
+            </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+            <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[command]" label="Command">
+                <Neos.Fusion.Form:Input attributes.placeholder="Command" />
+            </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+            <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[recurring]">
+                <Neos.Fusion.Form:Checkbox field.value="Recurring" />
+            </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+            <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[execution]" label="Execution" >
+                <Neos.Fusion.Form:Select>
+                    <Neos.Fusion.Form:Select.Option option.value="1min" >1 Minute</Neos.Fusion.Form:Select.Option>
+                    <Neos.Fusion.Form:Select.Option option.value="15min" >15 Minutes</Neos.Fusion.Form:Select.Option>
+                    <Neos.Fusion.Form:Select.Option option.value="hourly" >Hourly</Neos.Fusion.Form:Select.Option>
+                    <Neos.Fusion.Form:Select.Option option.value="daily" >Daily</Neos.Fusion.Form:Select.Option>
+                    <Neos.Fusion.Form:Select.Option option.value="weeky" >Weekly</Neos.Fusion.Form:Select.Option>
+                    <Neos.Fusion.Form:Select.Option option.value="monthly" >Monthly</Neos.Fusion.Form:Select.Option>
+                </Neos.Fusion.Form:Select>
+            </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+            <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" >
+                {props.buttonLabel}
+            </Neos.Fusion.Form:Button>
+
+        </Neos.Fusion.Form:Form>
+    `
+
+}

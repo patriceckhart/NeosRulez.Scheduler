@@ -1,0 +1,68 @@
+prototype(NeosRulez.Scheduler:BackendView.Job.Index) < prototype(Neos.Fusion:Component) {
+
+    inlineStyles = ${'<style>.text-success i { color:#00a338; }.text-danger i { color:#FF460E; }.text-success:hover i, .text-danger:hover i { color:#FFF; } .neos-controls input, .neos-controls select { width:50%; } .neos-control-group { display:block; margin-top:20px !important; margin-bottom:20px  !important; } .neos-checkbox { margin-bottom:0px !important; }</style>'}
+
+    renderer = afx`
+        {props.inlineStyles}
+        <table class="neos-table">
+            <thead>
+            <tr>
+                <td>Job</td>
+                <td>Execution</td>
+                <td>Recurring</td>
+                <td>Last execution</td>
+                <td>Next execution</td>
+                <td>Status</td>
+                <td>Created</td>
+                <td>&nbsp;</td>
+            </tr>
+            </thead>
+            <tbody>
+                <Neos.Fusion:Loop items={jobs} itemName="job">
+                    <tr>
+                        <td>{job.name}</td>
+                        <td>{job.execution}</td>
+                        <td>
+                            <span @if.render={job.recurring} class="neos-badge">Recurring</span>
+                            <span @if.render={!job.recurring} class="neos-badge">Single</span>
+                        </td>
+                        <td>{Date.format(job.last, 'Y/m/d, H:i')}</td>
+                        <td>{Date.format(job.next, 'Y/m/d, H:i')}</td>
+                        <td>
+                            <span @if.render={!job.disabled} class="neos-badge neos-badge-success">Enabled</span>
+                            <span @if.render={job.disabled} class="neos-badge neos-badge-danger">Disabled</span>
+                        </td>
+                        <td>{Date.format(job.created, 'Y/m/d, H:i')}</td>
+                        <td class="neos-action">
+                            <div class="neos-pull-right">
+                                <Neos.Fusion.Form:Form form.target.action="changeStatus" form.target.controller="Job" form.data.job={job} attributes.style="display:inline" >
+                                    <Neos.Fusion.Form:Hidden field.name="job" field.value={job} />
+                                    <Neos.Fusion.Form:Button attributes.class={job.disabled ? 'neos-button neos-button-success text-danger' : 'neos-button neos-button-danger text-success'} >
+                                        <i @if.render={!job.disabled} class="fas fa-toggle-on"></i>
+                                        <i @if.render={job.disabled} class="fas fa-toggle-off"></i>
+                                    </Neos.Fusion.Form:Button>
+                                </Neos.Fusion.Form:Form>
+                                <Neos.Fusion.Form:Form form.target.action="executeCommand" form.target.controller="Job" form.data.job={job} attributes.style="display:inline" >
+                                    <Neos.Fusion.Form:Hidden field.name="job" field.value={job} />
+                                    <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" >
+                                        <i class="fas fa-play"></i>
+                                    </Neos.Fusion.Form:Button>
+                                </Neos.Fusion.Form:Form>
+                                <Neos.Fusion.Form:Form form.target.action="delete" form.target.controller="Job" form.data.job={job} attributes.style="display:inline" >
+                                    <Neos.Fusion.Form:Hidden field.name="job" field.value={job} />
+                                    <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-danger" >
+                                        <i class="fas fa-trash"></i>
+                                    </Neos.Fusion.Form:Button>
+                                </Neos.Fusion.Form:Form>
+                            </div>
+                        </td>
+                    </tr>
+                </Neos.Fusion:Loop>
+            </tbody>
+        </table>
+
+        <NeosRulez.Scheduler:BackendView.Job.CreateForm action="create" />
+
+    `
+
+}

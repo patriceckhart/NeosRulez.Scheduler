@@ -1,0 +1,7 @@
+prototype(NeosRulez.Scheduler:BackendView.Job.Edit) < prototype(Neos.Fusion:Component) {
+
+    renderer = afx`
+        <NeosRulez.Scheduler:BackendView.Job.CreateForm action="update" />
+    `
+
+}

@@ -1,0 +1,24 @@
+-
+  name: 'Create scheduler job'
+  uriPattern: 'create-scheduler-job'
+  defaults:
+    '@controller': 'Job'
+    '@package': 'NeosRulez.Scheduler'
+    '@action': 'create'
+  appendExceedingArguments: true
+-
+  name: 'Change scheduler job status'
+  uriPattern: 'change-scheduler-job-status'
+  defaults:
+    '@controller': 'Job'
+    '@package': 'NeosRulez.Scheduler'
+    '@action': 'changeStatus'
+  appendExceedingArguments: true
+-
+  name: 'Delete scheduler job'
+  uriPattern: 'delete-scheduler-job'
+  defaults:
+    '@controller': 'Job'
+    '@package': 'NeosRulez.Scheduler'
+    '@action': 'delete'
+  appendExceedingArguments: true

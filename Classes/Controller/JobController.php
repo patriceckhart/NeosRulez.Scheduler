@@ -36,6 +36,7 @@ class JobController extends ActionController {
         $this->settings = $settings;
     }
 
+
     /**
      * @return void
      */
@@ -66,7 +67,7 @@ class JobController extends ActionController {
     public function createAction($job) {
 
         $next = new \DateTime();
-        $this->nextExecution($next, $job->getExecution());
+        $this->jobRepository->nextExecution($next, $job->getExecution());
         $job->setNext($next);
 
         $this->jobRepository->add($job);
@@ -103,7 +104,7 @@ class JobController extends ActionController {
     public function updateAction($job) {
 
         $next = $job->getNext();
-        $this->nextExecution($next, $job->getExecution());
+        $this->jobRepository->nextExecution($next, $job->getExecution());
         $job->setNext($next);
 
         $this->jobRepository->update($job);
@@ -117,36 +118,6 @@ class JobController extends ActionController {
     public function deleteAction($job) {
         $this->jobRepository->remove($job);
         $this->redirect('index');
-    }
-
-    public function nextExecution($next, $execution) {
-
-        if($execution == '1min') {
-            $next = $next->modify('+1 minute');
-        }
-
-        if($execution == '15min') {
-            $next = $next->modify('+15 minutes');
-        }
-
-        if($execution == 'hourly') {
-            $next = $next->modify('+1 hour');
-        }
-
-        if($execution == 'daily') {
-            $next = $next->modify('+1 day');
-        }
-
-        if($execution == 'weekly') {
-            $next = $next->modify('+1 week');
-        }
-
-        if($execution == 'monthly') {
-            $next = $next->modify('+1 month');
-        }
-
-        return $next;
-
     }
 
 }

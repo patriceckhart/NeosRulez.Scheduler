@@ -10,11 +10,11 @@ prototype(NeosRulez.Scheduler:BackendView.Job.CreateForm) < prototype(Neos.Fusio
         <Neos.Fusion.Form:Form form.data.job={job} form.target.action={props.action} form.target.controller="Job" >
 
             <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[name]" label="Name">
-                <Neos.Fusion.Form:Input attributes.placeholder="Name" />
+                <Neos.Fusion.Form:Input attributes.placeholder="Name" attributes.required="required" />
             </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
             <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[command]" label="Command">
-                <Neos.Fusion.Form:Input attributes.placeholder="Command" />
+                <Neos.Fusion.Form:Input attributes.placeholder="Command" attributes.required="required" />
             </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
             <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="job[recurring]">

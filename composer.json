@@ -1,5 +1,5 @@
 {
-  "description": "A Neos CMS plugin to manage cron jobs.",
+  "description": "A simple Neos CMS plugin to manage cron jobs.",
   "type": "neos-package",
   "name": "neosrulez/scheduler",
   "require": {

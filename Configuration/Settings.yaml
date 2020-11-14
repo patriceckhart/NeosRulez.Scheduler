@@ -11,14 +11,14 @@ Neos:
       scheduler:
         label: 'Scheduler'
         controller: '\Neos\Neos\Controller\Module\ManagementController'
-        description: 'Scheduler Administration'
+        description: 'Scheduler administration'
         icon: 'far fa-clock'
         resource: 'Neos_Neos_Backend_Module_Management'
         submodules:
           index:
             label: 'Jobs'
             controller: '\NeosRulez\Scheduler\Controller\JobController'
-            description: 'Jobs verwalten'
+            description: 'Manage jobs'
             icon: 'far fa-calendar-alt'
             actions:
               index:
